@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+int belongsToCFG(char *str) {
+    int i = 0;
+    if (str[i++] != '0')
+        return 0;
+    while (str[i] != '\0') {
+        if (str[i] == '1') {
+            i++;
+            while (str[i] == '1')
+                i++;
+            if (str[i] == '\0')
+                return 1;
+            else
+                return 0;
+        }
+        else if (str[i] == '0') {
+            i++;
+            while (str[i] == '0')
+                i++;
+            if (str[i] == '1')
+                return 1;
+            else
+                return 0;
+        }
+        else
+            return 0;
+    }
+
+    return 0;
+}
+
+int main() {
+    char str[100];
+    
+    printf("Enter a string to check if it belongs to the language defined by the CFG:\n");
+    scanf("%s", str);
+
+    if (belongsToCFG(str))
+        printf("The string belongs to the language defined by the CFG.\n");
+    else
+        printf("The string does not belong to the language defined by the CFG.\n");
+
+    return 0;
+}
